@@ -44,7 +44,7 @@ function createReport (withColors) {
 
 it('Should produce report with colors', function () {
     var report   = createReport(true);
-    var expected = JSON.parse(read('./data/report-with-colors.json'));
+    var expected = read('./data/report-with-colors');
 
     report   = normalizeNewline(report).trim();
     expected = normalizeNewline(expected).trim();
