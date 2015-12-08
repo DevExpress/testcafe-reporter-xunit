@@ -40,7 +40,7 @@ export default function () {
                 this.report += this.indentString('<![CDATA[', 4);
 
                 errs.forEach((err, idx) => {
-                    err = this.escapeHtml(this.formatError(err, `${idx + 1}) `));
+                    err = this.formatError(err, `${idx + 1}) `);
 
                     this.report += '\n';
                     this.report += this.wordWrap(err, 6, LINE_WIDTH);
