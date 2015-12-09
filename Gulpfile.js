@@ -1,8 +1,9 @@
-var gulp   = require('gulp');
-var eslint = require('gulp-eslint');
-var babel  = require('gulp-babel');
-var mocha  = require('gulp-mocha');
-var del    = require('del');
+var gulp    = require('gulp');
+var eslint  = require('gulp-eslint');
+var babel   = require('gulp-babel');
+var mocha   = require('gulp-mocha');
+var del     = require('del');
+var publish = require('publish-please');
 
 gulp.task('clean', function (cb) {
     del('lib', cb);
@@ -50,4 +51,8 @@ gulp.task('preview', ['build'], function () {
     });
 
     process.exit(0);
+});
+
+gulp.task('publish', ['test'], function () {
+    return publish();
 });
