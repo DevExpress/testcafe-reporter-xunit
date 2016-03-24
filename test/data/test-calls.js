@@ -1,3 +1,11 @@
+var LegacyTestRunErrorFormattableAdapter = require('testcafe/lib/legacy/test-run-error/formattable-adapter');
+
+function makeErrors (errs) {
+    return errs.map(function (err) {
+        return new LegacyTestRunErrorFormattableAdapter(err);
+    });
+}
+
 module.exports = [
     {
         method: 'reportTaskStart',
@@ -31,15 +39,15 @@ module.exports = [
         method: 'reportTestDone',
         args:   [
             'fixture1test2',
-            [
+            makeErrors([
                 {
-                    stepName:          'Step',
-                    expected:          '"12345678901"',
-                    actual:            '"00000000000"',
-                    relatedSourceCode: 'eq(["12345678901"], ["00000000000"])',
-                    key:               0,
-                    isArrays:          true,
-                    type:              'eqAssertion',
+                    stepName: 'Step',
+                    expected: '"12345678901"',
+                    actual:   '"00000000000"',
+                    callsite: 'eq(["12345678901"], ["00000000000"])',
+                    key:      0,
+                    isArrays: true,
+                    type:     'legacy|eqAssertion',
 
                     diffType: {
                         isStrings: true,
@@ -50,21 +58,21 @@ module.exports = [
                     userAgent:      'Chrome'
                 },
                 {
-                    relatedSourceCode: 'notEq("test", "test")',
-                    actual:            '"test"',
-                    expected:          '"test"',
-                    stepName:          'Step',
-                    type:              'notEqAssertion',
-                    userAgent:         'Chrome'
+                    callsite:  'notEq("test", "test")',
+                    actual:    '"test"',
+                    expected:  '"test"',
+                    stepName:  'Step',
+                    type:      'legacy|notEqAssertion',
+                    userAgent: 'Chrome'
                 },
                 {
-                    stepName:          'Step',
-                    relatedSourceCode: 'ok(false)',
-                    actual:            'false',
-                    type:              'okAssertion',
-                    userAgent:         'Firefox'
+                    stepName:  'Step',
+                    callsite:  'ok(false)',
+                    actual:    'false',
+                    type:      'legacy|okAssertion',
+                    userAgent: 'Firefox'
                 }
-            ],
+            ]),
             74000,
             false,
             '/screenshots/1445437598847'
@@ -118,15 +126,15 @@ module.exports = [
         method: 'reportTestDone',
         args:   [
             'fixture3test1',
-            [
+            makeErrors([
                 {
-                    stepName:          'Step',
-                    expected:          '"12345678901"',
-                    actual:            '"00000000000"',
-                    relatedSourceCode: 'eq(["12345678901"], ["00000000000"])',
-                    key:               0,
-                    isArrays:          true,
-                    type:              'eqAssertion',
+                    stepName: 'Step',
+                    expected: '"12345678901"',
+                    actual:   '"00000000000"',
+                    callsite: 'eq(["12345678901"], ["00000000000"])',
+                    key:      0,
+                    isArrays: true,
+                    type:     'legacy|eqAssertion',
 
                     diffType: {
                         isStrings: true,
@@ -135,7 +143,7 @@ module.exports = [
 
                     userAgent: 'Firefox'
                 }
-            ],
+            ]),
             74000,
             true,
             null
