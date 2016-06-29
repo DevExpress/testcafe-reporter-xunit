@@ -1,56 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite name="TestCafe Tests: Chrome, Firefox" tests="6" failures="2" errors="2" time="925" timestamp="Thu, 01 Jan 1970 00:15:25 GMT" >
-  <testcase classname="fixture1" name="fixture1test1 (unstable) (screenshots: /screenshots/1445437598847)" time="74" />
-  <testcase classname="fixture1" name="fixture1test2 (screenshots: /screenshots/1445437598847)" time="74" >
+<testsuite name="TestCafe Tests: Chrome 41.0.2227 / Mac OS X 10.10.1, Firefox 47 / Mac OS X 10.10.1" tests="6" failures="2" errors="2" time="925" timestamp="Thu, 01 Jan 1970 00:15:25 GMT" >
+  <testcase classname="First fixture" name="First test in first fixture (unstable) (screenshots: /screenshots/1445437598847)" time="74" />
+  <testcase classname="First fixture" name="Second test in first fixture (screenshots: /screenshots/1445437598847)" time="74" >
     <failure>
     <![CDATA[
-      1) Chrome
-         Assertion failed at step "Step":
+      1) Chrome 41.0.2227 / Mac OS X 10.10.1
+         Error on page "http://example.org":
 
-         eq(["12345678901"], ["00000000000"])
+         Some error
 
-         Arrays differ at index 0:
+            1 |var createCallsiteRecord = require('callsite-record');
+            2 |
+            3 |function someFunc () {
+          > 4 |    throw new Error('Hey ya!');
+            5 |}
+            6 |
+            7 |try {
+            8 |    someFunc();
+            9 |}
 
-         Expected: [0]: "12345678901"
-         Actual:   [0]: "00000000000"
-                         ^
+            at someFunc (some-file:1:1)
+            at Object.<anonymous> (some-file:1:1)
+            at Object.<anonymous> (some-file:1:1)
 
-         Screenshot: /screenshots/1445437598847/userAgent/1.Fail.png
+         Screenshot: /screenshots/1445437598847/errors
 
-      2) Chrome
-         Assertion failed at step "Step":
+      2) Firefox 47 / Mac OS X 10.10.1
+         The specified selector does not match any element in the DOM tree.
 
-         notEq("test", "test")
+            1 |var createCallsiteRecord = require('callsite-record');
+            2 |
+            3 |function someFunc () {
+          > 4 |    throw new Error('Hey ya!');
+            5 |}
+            6 |
+            7 |try {
+            8 |    someFunc();
+            9 |}
 
-         Expected: not "test"
-         Actual:   "test"
-
-      3) Firefox
-         Assertion failed at step "Step":
-
-         ok(false)
-
-         Expected: not null, not undefined, not false, not NaN and not ''
-         Actual:   false
+            at someFunc (some-file:1:1)
+            at Object.<anonymous> (some-file:1:1)
+            at Object.<anonymous> (some-file:1:1)
     ]]>
     </failure>
   </testcase>
-  <testcase classname="fixture1" name="fixture1test3" time="74" />
-  <testcase classname="fixture2" name="fixture2test1" time="74" />
-  <testcase classname="fixture2" name="fixture2test2" time="74" />
-  <testcase classname="fixture3" name="fixture3test1 (unstable)" time="74" >
+  <testcase classname="First fixture" name="Third test in first fixture" time="74" />
+  <testcase classname="Second fixture" name="First test in second fixture" time="74" />
+  <testcase classname="Second fixture" name="Second test in second fixture" time="74" />
+  <testcase classname="Third fixture" name="First test in third fixture (unstable)" time="74" >
     <failure>
     <![CDATA[
-      1) Firefox
-         Assertion failed at step "Step":
+      1) Firefox 47 / Mac OS X 10.10.1
+         - Error in beforeEach hook -
+         The specified selector does not match any element in the DOM tree.
 
-         eq(["12345678901"], ["00000000000"])
+            1 |var createCallsiteRecord = require('callsite-record');
+            2 |
+            3 |function someFunc () {
+          > 4 |    throw new Error('Hey ya!');
+            5 |}
+            6 |
+            7 |try {
+            8 |    someFunc();
+            9 |}
 
-         Arrays differ at index 0:
-
-         Expected: [0]: "12345678901"
-         Actual:   [0]: "00000000000"
-                         ^
+            at someFunc (some-file:1:1)
+            at Object.<anonymous> (some-file:1:1)
+            at Object.<anonymous> (some-file:1:1)
     ]]>
     </failure>
   </testcase>

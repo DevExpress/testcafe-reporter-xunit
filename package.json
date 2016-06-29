@@ -12,7 +12,9 @@
     "lib"
   ],
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "publish-please": "publish-please",
+    "prepublish": "publish-please guard"
   },
   "keywords": [
     "testcafe",
@@ -25,14 +27,15 @@
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^4.0.10",
+    "callsite-record": "^3.2.0",
     "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
     "gulp-eslint": "^1.1.1",
     "gulp-mocha": "^2.2.0",
     "normalize-newline": "^1.0.2",
-    "publish-please": "^1.0.1",
+    "publish-please": "^2.1.4",
     "read-file-relative": "^1.2.0",
-    "testcafe": "0.0.15"
+    "testcafe": "0.0.21"
   }
 }
