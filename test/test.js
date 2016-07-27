@@ -5,7 +5,7 @@ var createReport     = require('./utils/create-report');
 
 it('Should produce report with colors', function () {
     var report   = createReport(true);
-    var expected = read('./data/report-with-colors');
+    var expected = read('./data/report-with-colors.xml');
 
     report   = normalizeNewline(report).trim();
     expected = normalizeNewline(expected).trim();
@@ -15,7 +15,7 @@ it('Should produce report with colors', function () {
 
 it('Should produce report without colors', function () {
     var report   = createReport(false);
-    var expected = read('./data/report-without-colors');
+    var expected = read('./data/report-without-colors.xml');
 
     report   = normalizeNewline(report).trim();
     expected = normalizeNewline(expected).trim();

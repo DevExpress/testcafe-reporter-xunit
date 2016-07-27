@@ -19,43 +19,73 @@ export default function () {
             this.currentFixtureName = this.escapeHtml(name);
         },
 
-        reportTestDone (name, errs, durationMs, unstable, screenshotPath) {
-            var hasErr = !!errs.length;
+        _renderErrors (errs) {
+            this.report += ' >\n';
+            this.report += this.indentString('<failure>\n', 4);
+            this.report += this.indentString('<![CDATA[', 4);
 
-            if (unstable)
+            errs.forEach((err, idx) => {
+                err = this.formatError(err, `${idx + 1}) `);
+
+                this.report += '\n';
+                this.report += this.wordWrap(err, 6, LINE_WIDTH);
+                this.report += '\n';
+            });
+
+            this.report += this.indentString(']]>\n', 4);
+            this.report += this.indentString('</failure>\n', 4);
+            this.report += this.indentString('</testcase>\n', 2);
+        },
+
+        reportTestDone (name, testRunInfo) {
+            var hasErr = !!testRunInfo.errs.length;
+
+            if (testRunInfo.unstable)
                 name += ' (unstable)';
 
-            if (screenshotPath)
-                name += ` (screenshots: ${screenshotPath})`;
+            if (testRunInfo.screenshotPath)
+                name += ` (screenshots: ${testRunInfo.screenshotPath})`;
 
             name = this.escapeHtml(name);
 
-            var openTag = `<testcase classname="${this.currentFixtureName}" name="${name}" time="${durationMs / 1000}"`;
+            var openTag = `<testcase classname="${this.currentFixtureName}" name="${name}" time="${testRunInfo.durationMs /
+                                                                                                   1000}"`;
 
             this.report += this.indentString(openTag, 2);
 
-            if (hasErr) {
-                this.report += ' >\n';
-                this.report += this.indentString('<failure>\n', 4);
-                this.report += this.indentString('<![CDATA[', 4);
-
-                errs.forEach((err, idx) => {
-                    err = this.formatError(err, `${idx + 1}) `);
-
-                    this.report += '\n';
-                    this.report += this.wordWrap(err, 6, LINE_WIDTH);
-                    this.report += '\n';
-                });
-
-                this.report += this.indentString(']]>\n', 4);
-                this.report += this.indentString('</failure>\n', 4);
-                this.report += this.indentString('</testcase>\n', 2);
-            }
+            if (hasErr)
+                this._renderErrors(testRunInfo.errs);
             else
                 this.report += ' />\n';
         },
 
-        reportTaskDone (endTime, passed) {
+        _renderWarnings (warnings) {
+            this.setIndent(2)
+                .write('<system-out>')
+                .newline()
+                .write('<![CDATA[')
+                .newline()
+                .setIndent(4)
+                .write(`Warnings (${warnings.length}):`)
+                .newline();
+
+            warnings.forEach(msg => {
+                this.setIndent(4)
+                    .write('--')
+                    .newline()
+                    .setIndent(0)
+                    .write(this.wordWrap(msg, 6, LINE_WIDTH))
+                    .newline();
+            });
+
+            this.setIndent(2)
+                .write(']]>')
+                .newline()
+                .write('</system-out>')
+                .newline();
+        },
+
+        reportTaskDone (endTime, passed, warnings) {
             var name     = `TestCafe Tests: ${this.escapeHtml(this.uaList)}`;
             var failures = this.testCount - passed;
             var time     = (endTime - this.startTime) / 1000;
@@ -65,7 +95,12 @@ export default function () {
                 .write(`<testsuite name="${name}" tests="${this.testCount}" failures="${failures}" ` +
                        `errors="${failures}" time="${time}" timestamp="${endTime.toUTCString()}" >`)
                 .newline()
-                .write(this.report)
+                .write(this.report);
+
+            if (warnings.length)
+                this._renderWarnings(warnings);
+
+            this.setIndent(0)
                 .write('</testsuite>');
         }
     };

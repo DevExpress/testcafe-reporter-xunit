@@ -33,51 +33,58 @@ module.exports = [
         method: 'reportTestDone',
         args:   [
             'First test in first fixture',
-            [],
-            74000,
-            true,
-            '/screenshots/1445437598847'
+            {
+                errs:           [],
+                durationMs:     74000,
+                unstable:       true,
+                screenshotPath: '/screenshots/1445437598847'
+            }
         ]
     },
     {
         method: 'reportTestDone',
         args:   [
             'Second test in first fixture',
-            makeErrors([
-                {
+            {
+                errs: makeErrors([
+                    {
 
-                    err: new UncaughtErrorOnPage('Some error', 'http://example.org'),
+                        err: new UncaughtErrorOnPage('Some error', 'http://example.org'),
 
-                    metaInfo: {
-                        userAgent:      'Chrome 41.0.2227 / Mac OS X 10.10.1',
-                        screenshotPath: '/screenshots/1445437598847/errors',
-                        callsite:       testCallsite,
-                        testRunState:   'inTest'
+                        metaInfo: {
+                            userAgent:      'Chrome 41.0.2227 / Mac OS X 10.10.1',
+                            screenshotPath: '/screenshots/1445437598847/errors',
+                            callsite:       testCallsite,
+                            testRunState:   'inTest'
+                        }
+                    },
+                    {
+                        err: new ActionElementNotFoundError(),
+
+                        metaInfo: {
+                            userAgent:    'Firefox 47 / Mac OS X 10.10.1',
+                            callsite:     testCallsite,
+                            testRunState: 'inTest'
+                        }
                     }
-                },
-                {
-                    err: new ActionElementNotFoundError(),
+                ]),
 
-                    metaInfo: {
-                        userAgent:    'Firefox 47 / Mac OS X 10.10.1',
-                        callsite:     testCallsite,
-                        testRunState: 'inTest'
-                    }
-                }
-            ]),
-            74000,
-            false,
-            '/screenshots/1445437598847'
+                durationMs:     74000,
+                unstable:       false,
+                screenshotPath: '/screenshots/1445437598847'
+            }
         ]
     },
     {
         method: 'reportTestDone',
         args:   [
             'Third test in first fixture',
-            [],
-            74000,
-            false,
-            null
+            {
+                errs:           [],
+                durationMs:     74000,
+                unstable:       false,
+                screenshotPath: null
+            }
         ]
     },
     {
@@ -91,20 +98,24 @@ module.exports = [
         method: 'reportTestDone',
         args:   [
             'First test in second fixture',
-            [],
-            74000,
-            false,
-            null
+            {
+                errs:           [],
+                durationMs:     74000,
+                unstable:       false,
+                screenshotPath: null
+            }
         ]
     },
     {
         method: 'reportTestDone',
         args:   [
             'Second test in second fixture',
-            [],
-            74000,
-            false,
-            null
+            {
+                errs:           [],
+                durationMs:     74000,
+                unstable:       false,
+                screenshotPath: null
+            }
         ]
     },
     {
@@ -118,27 +129,37 @@ module.exports = [
         method: 'reportTestDone',
         args:   [
             'First test in third fixture',
-            makeErrors([
-                {
-                    err: new ActionElementNotFoundError(),
+            {
+                errs: makeErrors([
+                    {
+                        err: new ActionElementNotFoundError(),
 
-                    metaInfo: {
-                        userAgent:    'Firefox 47 / Mac OS X 10.10.1',
-                        callsite:     testCallsite,
-                        testRunState: 'inBeforeEach'
+                        metaInfo: {
+                            userAgent:    'Firefox 47 / Mac OS X 10.10.1',
+                            callsite:     testCallsite,
+                            testRunState: 'inBeforeEach'
+                        }
                     }
-                }
-            ]),
-            74000,
-            true,
-            null
+                ]),
+
+                durationMs:     74000,
+                unstable:       true,
+                screenshotPath: null
+            }
         ]
     },
     {
         method: 'reportTaskDone',
         args:   [
             new Date('1970-01-01T00:15:25.000Z'),
-            4
+            4,
+            [
+                'Was unable to take a screenshot due to an error.\n\nReferenceError: someVar is not defined',
+                'Was unable to take a screenshot due to an error.\n\nReferenceError: someOtherVar is not defined',
+                'Was unable to take screenshots because the screenshot directory is not specified. ' +
+                'To specify it, use the "-s" or "--screenshots" command line option or the ' +
+                '"screenshots" method of the test runner in case you are using API.'
+            ]
         ]
     }
 ];
