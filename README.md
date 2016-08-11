@@ -10,7 +10,7 @@ This is the **xUnit** reporter plugin for [TestCafe](http://devexpress.github.io
 ## Install
 
 ```
-npm install -g testcafe-reporter-xunit
+npm install testcafe-reporter-xunit
 ```
 
 ## Usage
