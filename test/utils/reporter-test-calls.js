@@ -119,6 +119,19 @@ module.exports = [
         ]
     },
     {
+        method: 'reportTestDone',
+        args:   [
+            'Third test in second fixture',
+            {
+                errs:           [],
+                durationMs:     0,
+                unstable:       false,
+                screenshotPath: null,
+                skipped:        true
+            }
+        ]
+    },
+    {
         method: 'reportFixtureStart',
         args:   [
             'Third fixture',

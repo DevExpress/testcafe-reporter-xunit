@@ -8,6 +8,7 @@ export default function () {
         uaList:             null,
         currentFixtureName: null,
         testCount:          0,
+        skipped:            0,
 
         reportTaskStart (startTime, userAgents, testCount) {
             this.startTime = startTime;
@@ -20,7 +21,6 @@ export default function () {
         },
 
         _renderErrors (errs) {
-            this.report += ' >\n';
             this.report += this.indentString('<failure>\n', 4);
             this.report += this.indentString('<![CDATA[', 4);
 
@@ -34,7 +34,6 @@ export default function () {
 
             this.report += this.indentString(']]>\n', 4);
             this.report += this.indentString('</failure>\n', 4);
-            this.report += this.indentString('</testcase>\n', 2);
         },
 
         reportTestDone (name, testRunInfo) {
@@ -48,15 +47,19 @@ export default function () {
 
             name = this.escapeHtml(name);
 
-            var openTag = `<testcase classname="${this.currentFixtureName}" name="${name}" time="${testRunInfo.durationMs /
-                                                                                                   1000}"`;
+            var openTag = `<testcase classname="${this.currentFixtureName}" ` +
+                          `name="${name}" time="${testRunInfo.durationMs / 1000}">\n`;
 
             this.report += this.indentString(openTag, 2);
 
-            if (hasErr)
+            if (testRunInfo.skipped) {
+                this.skipped++;
+                this.report += this.indentString('<skipped/>\n', 4);
+            }
+            else if (hasErr)
                 this._renderErrors(testRunInfo.errs);
-            else
-                this.report += ' />\n';
+
+            this.report += this.indentString('</testcase>\n', 2);
         },
 
         _renderWarnings (warnings) {
@@ -92,8 +95,8 @@ export default function () {
 
             this.write('<?xml version="1.0" encoding="UTF-8" ?>')
                 .newline()
-                .write(`<testsuite name="${name}" tests="${this.testCount}" failures="${failures}" ` +
-                       `errors="${failures}" time="${time}" timestamp="${endTime.toUTCString()}" >`)
+                .write(`<testsuite name="${name}" tests="${this.testCount}" failures="${failures}" skipped="${this.skipped}"` +
+                       ` errors="${failures}" time="${time}" timestamp="${endTime.toUTCString()}" >`)
                 .newline()
                 .write(this.report);
 
