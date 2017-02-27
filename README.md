@@ -9,6 +9,10 @@ This is the **xUnit** reporter plugin for [TestCafe](http://devexpress.github.io
 
 ## Install
 
+This reporter is shipped with TestCafe by default. In most cases, you won't need to install it separately.
+
+However, if you need to install this reporter, you can use the following command.
+
 ```
 npm install testcafe-reporter-xunit
 ```
