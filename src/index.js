@@ -20,11 +20,17 @@ export default function () {
             this.currentFixtureName = this.escapeHtml(name);
         },
 
-        _renderErrors (errs) {
+        _renderErrors (testRunInfo) {
             this.report += this.indentString('<failure>\n', 4);
             this.report += this.indentString('<![CDATA[', 4);
+            
+            if (testRunInfo.unstable)
+                this.report += this.indentString('(unstable)\n', 6);
 
-            errs.forEach((err, idx) => {
+            if (testRunInfo.screenshotPath)
+                this.report += this.indentString(`(screenshots: ${testRunInfo.screenshotPath})\n`, 6);
+            
+            testRunInfo.errs.forEach((err, idx) => {
                 err = this.formatError(err, `${idx + 1}) `);
 
                 this.report += '\n';
@@ -38,17 +44,9 @@ export default function () {
 
         reportTestDone (name, testRunInfo) {
             var hasErr = !!testRunInfo.errs.length;
-
-            if (testRunInfo.unstable)
-                name += ' (unstable)';
-
-            if (testRunInfo.screenshotPath)
-                name += ` (screenshots: ${testRunInfo.screenshotPath})`;
-
-            name = this.escapeHtml(name);
-
+            
             var openTag = `<testcase classname="${this.currentFixtureName}" ` +
-                          `name="${name}" time="${testRunInfo.durationMs / 1000}">\n`;
+                          `name="${this.escapeHtml(name)}" time="${testRunInfo.durationMs / 1000}">\n`;
 
             this.report += this.indentString(openTag, 2);
 
@@ -56,8 +54,8 @@ export default function () {
                 this.skipped++;
                 this.report += this.indentString('<skipped/>\n', 4);
             }
-            else if (hasErr)
-                this._renderErrors(testRunInfo.errs);
+            else if (hasErr || testRunInfo.unstable)
+                this._renderErrors(testRunInfo);
 
             this.report += this.indentString('</testcase>\n', 2);
         },
