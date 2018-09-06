@@ -25,10 +25,10 @@ export default function () {
             this.report += this.indentString('<![CDATA[', 4);
             
             if (testRunInfo.unstable)
-                this.report += this.indentString('(unstable)\n', 6);
+                this.report += this.indentString('\n(unstable)\n', 6);
 
             if (testRunInfo.screenshotPath)
-                this.report += this.indentString(`(screenshots: ${testRunInfo.screenshotPath})\n`, 6);
+                this.report += this.indentString(`\n(screenshots: ${testRunInfo.screenshotPath})\n`, 6);
             
             testRunInfo.errs.forEach((err, idx) => {
                 err = this.formatError(err, `${idx + 1}) `);
