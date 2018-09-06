@@ -1,5 +1,3 @@
-var LINE_WIDTH = 100;
-
 export default function () {
     return {
         noColors:           true,
@@ -34,7 +32,7 @@ export default function () {
                 err = this.formatError(err, `${idx + 1}) `);
 
                 this.report += '\n';
-                this.report += this.wordWrap(err, 6, LINE_WIDTH);
+                this.report += this.indentString(err, 6);
                 this.report += '\n';
             });
 
@@ -75,7 +73,7 @@ export default function () {
                     .write('--')
                     .newline()
                     .setIndent(0)
-                    .write(this.wordWrap(msg, 6, LINE_WIDTH))
+                    .write(this.indentString(msg, 6))
                     .newline();
             });
 
