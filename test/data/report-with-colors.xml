@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuite name="TestCafe Tests: Chrome 41.0.2227 / Mac OS X 10.10.1, Firefox 47 / Mac OS X 10.10.1" tests="6" failures="2" skipped="1" errors="2" time="925" timestamp="Thu, 01 Jan 1970 00:15:25 GMT" >
-  <testcase classname="First fixture" name="First test in first fixture (unstable) (screenshots: /screenshots/1445437598847)" time="74">
+  <testcase classname="First fixture" name="First test in first fixture" time="74">
+    <system-out>
+    <![CDATA[
+      (unstable)
+
+      (screenshots: /screenshots/1445437598847)
+    ]]>
+    </system-out>
   </testcase>
-  <testcase classname="First fixture" name="Second test in first fixture (screenshots: /screenshots/1445437598847)" time="74">
+  <testcase classname="First fixture" name="Second test in first fixture" time="74">
     <failure>
     <![CDATA[
       1) Error on page "http://example.org":
@@ -45,6 +52,11 @@
             at Object.<anonymous> (some-file:1:1)
     ]]>
     </failure>
+    <system-out>
+    <![CDATA[
+      (screenshots: /screenshots/1445437598847)
+    ]]>
+    </system-out>
   </testcase>
   <testcase classname="First fixture" name="Third test in first fixture" time="74">
   </testcase>
@@ -55,7 +67,7 @@
   <testcase classname="Second fixture" name="Third test in second fixture" time="0">
     <skipped/>
   </testcase>
-  <testcase classname="Third fixture" name="First test in third fixture (unstable)" time="74">
+  <testcase classname="Third fixture" name="First test in third fixture" time="74">
     <failure>
     <![CDATA[
       1) - Error in beforeEach hook -
@@ -78,6 +90,11 @@
             at Object.<anonymous> (some-file:1:1)
     ]]>
     </failure>
+    <system-out>
+    <![CDATA[
+      (unstable)
+    ]]>
+    </system-out>
   </testcase>
   <system-out>
   <![CDATA[
