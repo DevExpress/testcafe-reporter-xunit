@@ -22,12 +22,6 @@ export default function () {
             this.report += this.indentString('<failure>\n', 4);
             this.report += this.indentString('<![CDATA[', 4);
             
-            if (testRunInfo.unstable)
-                this.report += this.indentString('\n(unstable)\n', 6);
-
-            if (testRunInfo.screenshotPath)
-                this.report += this.indentString(`\n(screenshots: ${testRunInfo.screenshotPath})\n`, 6);
-            
             testRunInfo.errs.forEach((err, idx) => {
                 err = this.formatError(err, `${idx + 1}) `);
 
@@ -38,6 +32,20 @@ export default function () {
 
             this.report += this.indentString(']]>\n', 4);
             this.report += this.indentString('</failure>\n', 4);
+        },
+
+        _renderSystemOut (testRunInfo) {
+            this.report += this.indentString('<system-out>\n', 4);
+            this.report += this.indentString('<![CDATA[', 4);
+
+            if (testRunInfo.unstable)
+                this.report += this.indentString('\n(unstable)\n', 6);
+
+            if (testRunInfo.screenshotPath)
+                this.report += this.indentString(`\n(screenshots: ${testRunInfo.screenshotPath})\n`, 6);
+
+            this.report += this.indentString(']]>\n', 4);
+            this.report += this.indentString('</system-out>\n', 4);
         },
 
         reportTestDone (name, testRunInfo) {
@@ -52,8 +60,11 @@ export default function () {
                 this.skipped++;
                 this.report += this.indentString('<skipped/>\n', 4);
             }
-            else if (hasErr || testRunInfo.unstable)
+            else if (hasErr)
                 this._renderErrors(testRunInfo);
+
+            if (testRunInfo.screenshotPath || testRunInfo.unstable)
+                this._renderSystemOut(testRunInfo);
 
             this.report += this.indentString('</testcase>\n', 2);
         },
