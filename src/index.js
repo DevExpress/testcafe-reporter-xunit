@@ -94,7 +94,7 @@ export default function () {
             this.write('<?xml version="1.0" encoding="UTF-8" ?>')
                 .newline()
                 .write(`<testsuite name="${name}" tests="${this.testCount}" failures="${failures}" skipped="${this.skipped}"` +
-                       ` errors="${failures}" time="${time}" timestamp="${endTime.toUTCString()}" >`)
+                       ` errors="0" time="${time}" timestamp="${endTime.toUTCString()}" >`)
                 .newline()
                 .write(this.report);
 
