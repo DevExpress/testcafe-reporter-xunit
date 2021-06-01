@@ -49,6 +49,7 @@ export default function () {
 
             if (testRunInfo.screenshotPath)
                 var screenshotsTag = `<screenshots>${testRunInfo.screenshotPath}</screenshots>\n`;
+
                 this.report += this.indentString(screenshotsTag, 4);
 
             if (testRunInfo.skipped) {
