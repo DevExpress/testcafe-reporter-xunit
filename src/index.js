@@ -37,18 +37,19 @@ export default function () {
         reportTestDone (name, testRunInfo) {
             var hasErr = !!testRunInfo.errs.length;
 
-            if (testRunInfo.unstable)
-                name += ' (unstable)';
-
-            if (testRunInfo.screenshotPath)
-                name += ` (screenshots: ${testRunInfo.screenshotPath})`;
-
             name = this.escapeHtml(name);
 
             var openTag = `<testcase classname="${this.currentFixtureName}" ` +
                           `name="${name}" time="${testRunInfo.durationMs / 1000}">\n`;
 
             this.report += this.indentString(openTag, 2);
+
+            if (testRunInfo.unstable)
+                this.report += this.indentString('<unstable/>\n', 4);
+
+            if (testRunInfo.screenshotPath)
+                var screenshotsTag = `<screenshots>${testRunInfo.screenshotPath}</screenshots>\n`;
+                this.report += this.indentString(screenshotsTag, 4);
 
             if (testRunInfo.skipped) {
                 this.skipped++;
