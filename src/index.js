@@ -44,9 +44,8 @@ export default function () {
 
             this.report += this.indentString(openTag, 2);
 
-            if (testRunInfo.unstable) {
+            if (testRunInfo.unstable)
                 this.report += this.indentString('<unstable/>\n', 4);
-            }
 
             if (testRunInfo.screenshotPath) {
                 var screenshotsTag = `<screenshots>${testRunInfo.screenshotPath}</screenshots>\n`;
