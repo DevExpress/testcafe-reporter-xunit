@@ -38,4 +38,4 @@ testCafe
 ```
 
 ## Author
-Developer Express Inc. (https://devexpress.com)
+Developer Express Inc. (https://www.DevExpress.com)
