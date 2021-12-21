@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-xunit",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "xUnit TestCafe reporter plugin.",
   "repository": "https://github.com/DevExpress/testcafe-reporter-xunit",
   "author": {
