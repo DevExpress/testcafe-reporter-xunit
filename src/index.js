@@ -1,4 +1,4 @@
-export default function () {
+module.exports = function () {
     return {
         noColors:       true,
         report:         '',
@@ -106,4 +106,4 @@ export default function () {
                 .write('</testsuite>');
         }
     };
-}
+};
