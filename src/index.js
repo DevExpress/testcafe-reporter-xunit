@@ -37,12 +37,6 @@ module.exports = function () {
         reportTestDone (name, testRunInfo) {
             var hasErr = !!testRunInfo.errs.length;
 
-            if (testRunInfo.unstable)
-                name += ' (unstable)';
-
-            if (testRunInfo.screenshotPath)
-                name += ` (screenshots: ${testRunInfo.screenshotPath})`;
-
             name = this.escapeHtml(name);
 
             var openTag = `<testcase classname="${this.currentFixture.name}" ` +
