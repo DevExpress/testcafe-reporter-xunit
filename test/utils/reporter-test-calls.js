@@ -55,16 +55,21 @@ module.exports = [
                             userAgent:      'Chrome 41.0.2227 / Mac OS X 10.10.1',
                             screenshotPath: '/screenshots/1445437598847/errors',
                             callsite:       testCallsite,
-                            testRunState:   'inTest'
+                            testRunPhase:   'inTest',
+                            testRunId:      'id'
                         }
                     },
                     {
-                        err: new ActionElementNotFoundError(),
+                        err: new ActionElementNotFoundError(null, {
+                            apiFnChain: ['Selector', 'one', 'two', 'three'],
+                            apiFnIndex: 2,
+                        }, 1),
 
                         metaInfo: {
                             userAgent:    'Firefox 47 / Mac OS X 10.10.1',
                             callsite:     testCallsite,
-                            testRunState: 'inTest'
+                            testRunPhase: 'inTest',
+                            testRunId:    'id'
                         }
                     }
                 ]),
@@ -145,12 +150,16 @@ module.exports = [
             {
                 errs: makeErrors([
                     {
-                        err: new ActionElementNotFoundError(),
+                        err: new ActionElementNotFoundError(null, {
+                            apiFnChain: ['Selector', 'one', 'two', 'three'],
+                            apiFnIndex: 2,
+                        }),
 
                         metaInfo: {
                             userAgent:    'Firefox 47 / Mac OS X 10.10.1',
                             callsite:     testCallsite,
-                            testRunState: 'inBeforeEach'
+                            testRunPhase: 'inTestRunBeforeHook',
+                            testRunId:    'id'
                         }
                     }
                 ]),
