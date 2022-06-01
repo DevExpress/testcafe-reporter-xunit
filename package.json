@@ -35,5 +35,11 @@
     "publish-please": "^5.5.2",
     "read-file-relative": "^1.2.0",
     "testcafe": "^1.18.6"
+  },
+  "overrides": {
+    "lodash": "^4.17.21"
+  },
+  "resolutions": {
+    "lodash": "^4.17.21"
   }
 }
