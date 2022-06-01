@@ -5,8 +5,13 @@
   <testcase classname="First fixture" file="./fixture1.js" name="Second test in first fixture (screenshots: /screenshots/1445437598847)" time="74">
     <failure>
     <![CDATA[
-      1) Error on page "http://example.org":
+      1) A JavaScript error occurred on "http://example.org".
+         Repeat test actions in the browser and check the console for errors.
+         To ignore client-side JavaScript errors, enable the "--skip-js-errors" CLI option, or set the "skipJsErrors" configuration file property to "true".
+         If the website only throws this error when you test it with TestCafe, please create a new issue at:
+         "https://github.com/DevExpress/testcafe/issues/new?template=bug-report.md".
 
+         JavaScript error details:
          Some error
 
          Browser: Chrome 41.0.2227 / Mac OS X 10.10.1
@@ -27,15 +32,18 @@
             at Object.<anonymous> (some-file:1:1)
             at Object.<anonymous> (some-file:1:1)
             at Object.<anonymous> (some-file:1:1)
-            at Object.exports.requireOrImport (some-file:1:1)
-            at Object.exports.loadFilesAsync (some-file:1:1)
-            at Mocha.loadFilesAsync (some-file:1:1)
-            at singleRun (some-file:1:1)
-            at exports.runMocha (some-file:1:1)
-            at Object.exports.handler (some-file:1:1)
-            at <anonymous> (some-file:1:1)
+            at async formattedImport (some-file:1:1)
+            at async Object.exports.requireOrImport (some-file:1:1)
+            at async Object.exports.loadFilesAsync (some-file:1:1)
+            at async singleRun (some-file:1:1)
+            at async Object.exports.handler (some-file:1:1)
 
       2) The specified selector does not match any element in the DOM tree.
+
+            | Selector
+            |   one
+          > |   two
+            |   three
 
          Browser: Firefox 47 / Mac OS X 10.10.1
 
@@ -54,13 +62,11 @@
             at Object.<anonymous> (some-file:1:1)
             at Object.<anonymous> (some-file:1:1)
             at Object.<anonymous> (some-file:1:1)
-            at Object.exports.requireOrImport (some-file:1:1)
-            at Object.exports.loadFilesAsync (some-file:1:1)
-            at Mocha.loadFilesAsync (some-file:1:1)
-            at singleRun (some-file:1:1)
-            at exports.runMocha (some-file:1:1)
-            at Object.exports.handler (some-file:1:1)
-            at <anonymous> (some-file:1:1)
+            at async formattedImport (some-file:1:1)
+            at async Object.exports.requireOrImport (some-file:1:1)
+            at async Object.exports.loadFilesAsync (some-file:1:1)
+            at async singleRun (some-file:1:1)
+            at async Object.exports.handler (some-file:1:1)
     ]]>
     </failure>
   </testcase>
@@ -76,8 +82,13 @@
   <testcase classname="Third fixture" file="./fixture3.js" name="First test in third fixture (unstable)" time="74">
     <failure>
     <![CDATA[
-      1) - Error in beforeEach hook -
+      1) - Error in testRun.before hook -
          The specified selector does not match any element in the DOM tree.
+
+            | Selector
+            |   one
+          > |   two
+            |   three
 
          Browser: Firefox 47 / Mac OS X 10.10.1
 
@@ -96,13 +107,11 @@
             at Object.<anonymous> (some-file:1:1)
             at Object.<anonymous> (some-file:1:1)
             at Object.<anonymous> (some-file:1:1)
-            at Object.exports.requireOrImport (some-file:1:1)
-            at Object.exports.loadFilesAsync (some-file:1:1)
-            at Mocha.loadFilesAsync (some-file:1:1)
-            at singleRun (some-file:1:1)
-            at exports.runMocha (some-file:1:1)
-            at Object.exports.handler (some-file:1:1)
-            at <anonymous> (some-file:1:1)
+            at async formattedImport (some-file:1:1)
+            at async Object.exports.requireOrImport (some-file:1:1)
+            at async Object.exports.loadFilesAsync (some-file:1:1)
+            at async singleRun (some-file:1:1)
+            at async Object.exports.handler (some-file:1:1)
     ]]>
     </failure>
   </testcase>
