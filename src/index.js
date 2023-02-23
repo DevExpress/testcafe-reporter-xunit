@@ -1,4 +1,10 @@
-module.exports = function () {
+const { relative } = require('node:path');
+
+module.exports = function (options) {
+    function resolvePath (path) {
+        return options && options.basePath ? relative(options.basePath, path) : path;
+    }
+
     return {
         noColors:       true,
         report:         '',
@@ -14,8 +20,8 @@ module.exports = function () {
             this.testCount = testCount;
         },
 
-        reportFixtureStart (name, path) {
-            this.currentFixture = { name: this.escapeHtml(name), path: path };
+        reportFixtureStart (name, absolutePath) {
+            this.currentFixture = { name: this.escapeHtml(name), path: resolvePath(absolutePath) };
         },
 
         _renderErrors (errs) {
@@ -46,7 +52,7 @@ module.exports = function () {
             name = this.escapeHtml(name);
 
             var openTag = `<testcase classname="${this.currentFixture.name}" ` +
-                          `file="${this.currentFixture.path}" ` +  
+                          `file="${this.currentFixture.path}" ` +
                           `name="${name}" time="${testRunInfo.durationMs / 1000}">\n`;
 
             this.report += this.indentString(openTag, 2);

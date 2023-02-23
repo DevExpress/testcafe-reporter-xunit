@@ -19,13 +19,14 @@ npm install testcafe-reporter-xunit
 
 ## Usage
 
+### CLI
 When you run tests from the command line, specify the reporter name by using the `--reporter` option:
 
 ```
 testcafe chrome 'path/to/test/file.js' --reporter xunit
 ```
 
-
+### Test Runner API
 When you use API, pass the reporter name to the `reporter()` method:
 
 ```js
@@ -36,6 +37,17 @@ testCafe
     .reporter('xunit') // <-
     .run();
 ```
+### Configuration file
 
+```js
+reporter: [
+    {
+      name: 'xunit',
+      output: <path-for-xml-report>, // string
+      options: { basePath: <your-repository-root>, /* string */ }
+    },
+    ...
+]
+```
 ## Author
 Developer Express Inc. (https://devexpress.com)
