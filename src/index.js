@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-control-regex
+const RESTRICTED_CHAR = /[\x01-\x08\x0B-\x0C\x0E-\x1F\x7F-\x84\x86-\x9F]/g;
+
 module.exports = function () {
     return {
         noColors:       true,
@@ -8,6 +11,18 @@ module.exports = function () {
         testCount:      0,
         skipped:        0,
 
+        escapeXml (value) {
+            return this.replaceIllegalCharacters(this.escapeHtml(value));
+        },
+
+        escapeCdata (value) {
+            return this.replaceIllegalCharacters(value);
+        },
+
+        replaceIllegalCharacters (value) {
+            return value.toString().replaceAll(RESTRICTED_CHAR, '�');
+        },
+
         reportTaskStart (startTime, userAgents, testCount) {
             this.startTime = startTime;
             this.uaList    = userAgents.join(', ');
@@ -15,7 +30,7 @@ module.exports = function () {
         },
 
         reportFixtureStart (name, path) {
-            this.currentFixture = { name: this.escapeHtml(name), path: path };
+            this.currentFixture = { name: this.escapeXml(name), path: path };
         },
 
         _renderErrors (errs) {
@@ -26,7 +41,7 @@ module.exports = function () {
                 err = this.formatError(err, `${idx + 1}) `);
 
                 this.report += '\n';
-                this.report += this.indentString(err, 6);
+                this.report += this.indentString(this.escapeCdata(err), 6);
                 this.report += '\n';
             });
 
@@ -43,10 +58,10 @@ module.exports = function () {
             if (testRunInfo.screenshotPath)
                 name += ` (screenshots: ${testRunInfo.screenshotPath})`;
 
-            name = this.escapeHtml(name);
+            name = this.escapeXml(name);
 
-            var openTag = `<testcase classname="${this.currentFixture.name}" ` +
-                          `file="${this.currentFixture.path}" ` +  
+            var openTag = `<testcase classname="${this.escapeXml(this.currentFixture.name)}" ` +
+                          `file="${this.escapeXml(this.currentFixture.path)}" ` +  
                           `name="${name}" time="${testRunInfo.durationMs / 1000}">\n`;
 
             this.report += this.indentString(openTag, 2);
@@ -88,7 +103,7 @@ module.exports = function () {
         },
 
         reportTaskDone (endTime, passed, warnings) {
-            var name     = `TestCafe Tests: ${this.escapeHtml(this.uaList)}`;
+            var name     = `TestCafe Tests: ${this.escapeXml(this.uaList)}`;
             var failures = this.testCount - passed;
             var time     = (endTime - this.startTime) / 1000;
 
