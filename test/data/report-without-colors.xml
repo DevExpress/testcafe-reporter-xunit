@@ -33,10 +33,10 @@
             at Object.<anonymous> (some-file:1:1)
             at Object.<anonymous> (some-file:1:1)
             at async formattedImport (some-file:1:1)
-            at async exports.requireOrImport (some-file:1:1)
-            at async exports.loadFilesAsync (some-file:1:1)
+            at async Object.exports.requireOrImport (some-file:1:1)
+            at async Object.exports.loadFilesAsync (some-file:1:1)
             at async singleRun (some-file:1:1)
-            at async exports.handler (some-file:1:1)
+            at async Object.exports.handler (some-file:1:1)
 
       2) The specified selector does not match any element in the DOM tree.
 
@@ -63,10 +63,10 @@
             at Object.<anonymous> (some-file:1:1)
             at Object.<anonymous> (some-file:1:1)
             at async formattedImport (some-file:1:1)
-            at async exports.requireOrImport (some-file:1:1)
-            at async exports.loadFilesAsync (some-file:1:1)
+            at async Object.exports.requireOrImport (some-file:1:1)
+            at async Object.exports.loadFilesAsync (some-file:1:1)
             at async singleRun (some-file:1:1)
-            at async exports.handler (some-file:1:1)
+            at async Object.exports.handler (some-file:1:1)
     ]]>
     </failure>
   </testcase>
@@ -108,10 +108,10 @@
             at Object.<anonymous> (some-file:1:1)
             at Object.<anonymous> (some-file:1:1)
             at async formattedImport (some-file:1:1)
-            at async exports.requireOrImport (some-file:1:1)
-            at async exports.loadFilesAsync (some-file:1:1)
+            at async Object.exports.requireOrImport (some-file:1:1)
+            at async Object.exports.loadFilesAsync (some-file:1:1)
             at async singleRun (some-file:1:1)
-            at async exports.handler (some-file:1:1)
+            at async Object.exports.handler (some-file:1:1)
     ]]>
     </failure>
   </testcase>
