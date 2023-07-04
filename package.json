@@ -32,9 +32,9 @@
     "eslint": "^8.16.0",
     "mocha": "^10.0.0",
     "normalize-newline": "^1.0.2",
-    "publish-please": "^5.5.2",
+    "publish-please": "^2.1.4",
     "read-file-relative": "^1.2.0",
-    "testcafe": "^2.3.1"
+    "testcafe": "^3.0.1"
   },
   "overrides": {
     "lodash": "^4.17.21"
