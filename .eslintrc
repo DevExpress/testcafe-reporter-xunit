@@ -1,5 +1,4 @@
 {
-  "parser": "babel-eslint",
   "extends": "eslint:recommended",
   "rules": {
     "no-alert": "error",
@@ -38,46 +37,122 @@
     "consistent-return": "error",
     "eqeqeq": "error",
     "semi": "error",
-    "semi-spacing": ["error", {"before": false, "after": true}],
+    "semi-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
     "space-infix-ops": "error",
-    "space-unary-ops": ["error", { "words": true, "nonwords": false }],
-    "yoda": ["error", "never"],
-    "brace-style": ["error", "stroustrup", { "allowSingleLine": false }],
+    "space-unary-ops": [
+      "error",
+      {
+        "words": true,
+        "nonwords": false
+      }
+    ],
+    "yoda": [
+      "error",
+      "never"
+    ],
+    "brace-style": [
+      "error",
+      "stroustrup",
+      {
+        "allowSingleLine": false
+      }
+    ],
     "eol-last": "error",
-    "indent": ["error", 4, { "SwitchCase": 1 }],
-    "key-spacing": ["error", { "align": "value" }],
-    "max-nested-callbacks": ["error", 3],
+    "indent": [
+      "error",
+      4,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "key-spacing": [
+      "error",
+      {
+        "align": "value"
+      }
+    ],
+    "max-nested-callbacks": [
+      "error",
+      3
+    ],
     "new-parens": "error",
-    "newline-after-var": ["error", "always"],
+    "newline-after-var": [
+      "error",
+      "always"
+    ],
     "no-lonely-if": "error",
-    "no-multiple-empty-lines":  ["error", { "max": 2 }],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 2
+      }
+    ],
     "no-nested-ternary": "error",
     "no-underscore-dangle": "off",
     "no-unneeded-ternary": "error",
-    "object-curly-spacing": ["error", "always"],
-    "operator-assignment": ["error", "always"],
-    "quotes": ["error", "single", "avoid-escape"],
-    "keyword-spacing" : "error",
-    "space-before-blocks": ["error", "always"],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "operator-assignment": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "error",
+      "single",
+      "avoid-escape"
+    ],
+    "keyword-spacing": "error",
+    "space-before-blocks": [
+      "error",
+      "always"
+    ],
     "prefer-const": "error",
     "no-path-concat": "error",
     "no-undefined": "error",
     "strict": "off",
-    "curly": ["error", "multi-or-nest"],
+    "curly": [
+      "error",
+      "multi-or-nest"
+    ],
     "dot-notation": "off",
     "no-else-return": "error",
-    "one-var": ["error", "never"],
-    "no-multi-spaces": ["error", {
-      "exceptions": {
-        "VariableDeclarator": true,
-        "AssignmentExpression": true
+    "one-var": [
+      "error",
+      "never"
+    ],
+    "no-multi-spaces": [
+      "error",
+      {
+        "exceptions": {
+          "VariableDeclarator": true,
+          "AssignmentExpression": true
+        }
       }
-    }],
+    ],
     "radix": "error",
     "no-extra-parens": "error",
-    "new-cap": ["error", { "capIsNew": false }],
-    "space-before-function-paren": ["error", "always"],
-    "no-use-before-define" : ["error", "nofunc"],
+    "new-cap": [
+      "error",
+      {
+        "capIsNew": false
+      }
+    ],
+    "space-before-function-paren": [
+      "error",
+      "always"
+    ],
+    "no-use-before-define": [
+      "error",
+      "nofunc"
+    ],
     "handle-callback-err": "off"
   },
   "env": {

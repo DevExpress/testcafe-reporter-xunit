@@ -68,7 +68,7 @@ module.exports = [
                         }
                     },
                     {
-                        err: new ActionElementNotFoundError({ apiFnChain: [] }),
+                        err: new ActionElementNotFoundError(null, { apiFnChain: [] }),
 
                         metaInfo: {
                             userAgent:    'Firefox 47 / Mac OS X 10.10.1',
@@ -165,7 +165,7 @@ module.exports = [
             {
                 errs: makeErrors([
                     {
-                        err: new ActionElementNotFoundError({ apiFnChain: [] }),
+                        err: new ActionElementNotFoundError(null, { apiFnChain: [] }),
 
                         metaInfo: {
                             userAgent:    'Firefox 47 / Mac OS X 10.10.1',
