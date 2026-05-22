@@ -1,5 +1,6 @@
 # testcafe-reporter-junit
-[![Build Status](https://travis-ci.org/alexschwantes/testcafe-reporter-junit.svg)](https://travis-ci.org/alexschwantes/testcafe-reporter-junit)
+
+[![CI](https://github.com/alexschwantes/testcafe-reporter-junit/actions/workflows/ci.yml/badge.svg)](https://github.com/alexschwantes/testcafe-reporter-junit/actions/workflows/ci.yml)
 
 > This is the fork of the [**xUnit**](https://github.com/DevExpress/testcafe-reporter-xunit) reporter plugin for [TestCafe](http://devexpress.github.io/testcafe).
 
@@ -25,14 +26,52 @@ When you run tests from the command line, specify the reporter name by using the
 testcafe chrome 'path/to/test/file.js' --reporter junit
 ```
 
-
 When you use API, pass the reporter name to the `reporter()` method:
 
 ```js
 testCafe
     .createRunner()
-    .src('path/to/test/file.js')
-    .browsers('chrome')
-    .reporter('junit') // <-
+    .src("path/to/test/file.js")
+    .browsers("chrome")
+    .reporter("junit") // <-
     .run();
 ```
+
+## Metadata Attributes
+
+This reporter includes TestCafe metadata in each generated `<testcase>` element as XML attributes. This is useful when your CI pipeline needs fields such as `owner`, `component`, `priority`, or build identifiers.
+
+Fixture metadata is applied to all tests in the fixture. Test-level metadata is merged on top of fixture metadata, so test-level values override fixture-level values when the same key is present.
+
+Example:
+
+```js
+fixture.meta({
+    owner: "fixture owner",
+    component: "checkout",
+    priority: "high",
+})("Checkout flow");
+
+test.meta({
+    owner: "test owner",
+    build: "2026.05.18",
+})("submits an order", async (t) => {
+    // test code
+});
+```
+
+Produces a `<testcase>` similar to:
+
+```xml
+<testcase
+    classname="Checkout flow"
+    name="submits an order"
+    time="74"
+    owner="test owner"
+    component="checkout"
+    priority="high"
+    build="2026.05.18">
+</testcase>
+```
+
+This makes the `owner` field and other custom metadata available to downstream tools such as Azure DevOps pipeline test reporting.
