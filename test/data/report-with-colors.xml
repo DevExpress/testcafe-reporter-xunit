@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuite name="TestCafe Tests: Chrome 41.0.2227 / Mac OS X 10.10.1, Firefox 47 / Mac OS X 10.10.1" tests="6" failures="2" skipped="1" errors="2" time="925" timestamp="Thu, 01 Jan 1970 00:15:25 GMT" >
-  <testcase classname="First fixture" name="First test in first fixture" time="74">
+  <testcase classname="First fixture" name="First test in first fixture" time="74" owner="test owner" component="checkout" priority="high" build="2026.05.18">
     <system-out>
     <![CDATA[
       (unstable)
@@ -9,7 +9,7 @@
     ]]>
     </system-out>
   </testcase>
-  <testcase classname="First fixture" name="Second test in first fixture" time="74">
+  <testcase classname="First fixture" name="Second test in first fixture" time="74" owner="second test owner" component="checkout" priority="low" issue="QA-101">
     <failure>
     <![CDATA[
       1) undefinedA JavaScript error occurred on "http://example.org".
@@ -34,23 +34,6 @@
             8 |    someFunc();
             9 |}
 
-            at someFunc (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at <anonymous> (some-file:1:1)
-            at Mocha.loadFiles (some-file:1:1)
-            at Mocha.run (some-file:1:1)
-            at Object.exports.singleRun (some-file:1:1)
-            at exports.runMocha (some-file:1:1)
-            at Object.exports.handler.argv [as handler] (some-file:1:1)
-            at Object.runCommand (some-file:1:1)
-            at Object.parseArgs [as _parseArgs] (some-file:1:1)
-            at Object.parse (some-file:1:1)
-            at Object.exports.main (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-
       2) undefinedThe specified selector does not match any element in the DOM tree.
 
          Browser: Firefox 47 / Mac OS X 10.10.1
@@ -64,23 +47,6 @@
             7 |try {
             8 |    someFunc();
             9 |}
-
-            at someFunc (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at <anonymous> (some-file:1:1)
-            at Mocha.loadFiles (some-file:1:1)
-            at Mocha.run (some-file:1:1)
-            at Object.exports.singleRun (some-file:1:1)
-            at exports.runMocha (some-file:1:1)
-            at Object.exports.handler.argv [as handler] (some-file:1:1)
-            at Object.runCommand (some-file:1:1)
-            at Object.parseArgs [as _parseArgs] (some-file:1:1)
-            at Object.parse (some-file:1:1)
-            at Object.exports.main (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
     ]]>
     </failure>
     <system-out>
@@ -89,7 +55,7 @@
     ]]>
     </system-out>
   </testcase>
-  <testcase classname="First fixture" name="Third test in first fixture" time="74">
+  <testcase classname="First fixture" name="Third test in first fixture" time="74" owner="fixture owner" component="account" priority="high">
   </testcase>
   <testcase classname="Second fixture" name="First test in second fixture" time="74">
   </testcase>
@@ -98,7 +64,7 @@
   <testcase classname="Second fixture" name="Third test in second fixture" time="0">
     <skipped/>
   </testcase>
-  <testcase classname="Third fixture" name="First test in third fixture" time="74">
+  <testcase classname="Third fixture" name="First test in third fixture" time="74" owner="third fixture owner">
     <failure>
     <![CDATA[
       1) undefinedThe specified selector does not match any element in the DOM tree.
@@ -114,23 +80,6 @@
             7 |try {
             8 |    someFunc();
             9 |}
-
-            at someFunc (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
-            at <anonymous> (some-file:1:1)
-            at Mocha.loadFiles (some-file:1:1)
-            at Mocha.run (some-file:1:1)
-            at Object.exports.singleRun (some-file:1:1)
-            at exports.runMocha (some-file:1:1)
-            at Object.exports.handler.argv [as handler] (some-file:1:1)
-            at Object.runCommand (some-file:1:1)
-            at Object.parseArgs [as _parseArgs] (some-file:1:1)
-            at Object.parse (some-file:1:1)
-            at Object.exports.main (some-file:1:1)
-            at Object.<anonymous> (some-file:1:1)
     ]]>
     </failure>
     <system-out>

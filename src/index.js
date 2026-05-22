@@ -6,6 +6,7 @@ module.exports = () => ({
     currentFixtureName: null,
     testCount:          0,
     skipped:            0,
+    currentFixtureMeta: null,
 
     reportTaskStart (startTime, userAgents, testCount) {
         this.startTime = startTime;
@@ -13,8 +14,25 @@ module.exports = () => ({
         this.testCount = testCount;
     },
 
-    reportFixtureStart (name) {
+    reportFixtureStart (name, path, meta) {
         this.currentFixtureName = this.escapeHtml(name);
+        this.currentFixtureMeta = meta ? Object.assign({}, meta) : null;
+    },
+
+    _renderMetadata (testMeta) {
+        var metadata = Object.assign({}, this.currentFixtureMeta || {}, testMeta || {});
+        var attrs    = '';
+
+        Object.keys(metadata).forEach(key => {
+            var value = metadata[key];
+
+            if (typeof value === 'undefined')
+                return;
+
+            attrs += ` ${this.escapeHtml(key)}="${this.escapeHtml(String(value))}"`;
+        });
+
+        return attrs;
     },
 
     _renderErrors (testRunInfo) {
@@ -47,11 +65,16 @@ module.exports = () => ({
         this.report += this.indentString('</system-out>\n', 4);
     },
 
-    reportTestDone (name, testRunInfo) {
+    reportTestDone (name, testRunInfo, meta) {
         var hasErr = !!testRunInfo.errs.length;
+        var metadataAttributes = this._renderMetadata(meta);
         
         var openTag = `<testcase classname="${this.currentFixtureName}" ` +
-                        `name="${this.escapeHtml(name)}" time="${testRunInfo.durationMs / 1000}">\n`;
+                        `name="${this.escapeHtml(name)}" time="${testRunInfo.durationMs / 1000}"`;
+
+        openTag += metadataAttributes;
+          
+        openTag += '>\n';
 
         this.report += this.indentString(openTag, 2);
 

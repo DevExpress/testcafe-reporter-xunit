@@ -36,6 +36,8 @@ module.exports = function createReport (withColors) {
         plugin[call.method].apply(plugin, call.args);
     });
 
-    // NOTE: mock stack entries
-    return outStream.data.replace(/\s*?\(.+?:\d+:\d+\)/g, ' (some-file:1:1)');
+    // NOTE: normalize stack entries to avoid environment-specific noise in snapshots.
+    return outStream.data
+        .replace(/\s*?\(.+?:\d+:\d+\)/g, ' (some-file:1:1)')
+        .replace(/^\s*at .+\n?/gm, '');
 };

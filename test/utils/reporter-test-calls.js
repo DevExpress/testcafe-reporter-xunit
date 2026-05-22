@@ -26,7 +26,12 @@ module.exports = [
         method: 'reportFixtureStart',
         args:   [
             'First fixture',
-            './fixture1.js'
+            './fixture1.js',
+            {
+                owner:     'fixture owner',
+                component: 'checkout',
+                priority:  'high'
+            }
         ]
     },
     {
@@ -38,6 +43,10 @@ module.exports = [
                 durationMs:     74000,
                 unstable:       true,
                 screenshotPath: '/screenshots/1445437598847'
+            },
+            {
+                owner: 'test owner',
+                build: '2026.05.18'
             }
         ]
     },
@@ -72,6 +81,11 @@ module.exports = [
                 durationMs:     74000,
                 unstable:       false,
                 screenshotPath: '/screenshots/1445437598847'
+            },
+            {
+                owner:    'second test owner',
+                priority: 'low',
+                issue:    'QA-101'
             }
         ]
     },
@@ -84,6 +98,9 @@ module.exports = [
                 durationMs:     74000,
                 unstable:       false,
                 screenshotPath: null
+            },
+            {
+                component: 'account'
             }
         ]
     },
@@ -135,7 +152,10 @@ module.exports = [
         method: 'reportFixtureStart',
         args:   [
             'Third fixture',
-            './fixture3.js'
+            './fixture3.js',
+            {
+                owner: 'third fixture owner'
+            }
         ]
     },
     {
